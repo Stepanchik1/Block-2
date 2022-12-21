@@ -15,10 +15,6 @@ public class Car {
 
     private Key key;
 
-    public static boolean isIsWinterRubber() {
-        return isWinterRubber;
-    }
-
     public static void setIsWinterRubber(boolean isWinterRubber) {
         Car.isWinterRubber = isWinterRubber;
     }
@@ -54,7 +50,7 @@ public class Car {
         return placesCount;
     }
 
-    public boolean isWinterRubber() {
+    public boolean getIsWinterRubber() {
         if (this == null) {return false;}
         return isWinterRubber;
     }
@@ -103,12 +99,12 @@ if (transmission.trim()!="Автоматическая"||transmission.trim()!="�
         private boolean distanceLaunch;
         private boolean keylessEntry;
 
-        public Key(boolean distanceLaunch, boolean keylessEntry) {
+        private Key(boolean distanceLaunch, boolean keylessEntry) {
             this.distanceLaunch = distanceLaunch;
             this.keylessEntry = keylessEntry;
         }
 
-        public boolean isDistanceLaunch() {
+        private boolean isDistanceLaunch() {
             if (key == null) {
                 return false;
             } else {
@@ -116,12 +112,12 @@ if (transmission.trim()!="Автоматическая"||transmission.trim()!="�
             }
         }
 
-        public void setDistanceLaunch(boolean distanceLaunch) {
+        private void setDistanceLaunch(boolean distanceLaunch) {
             this.distanceLaunch = distanceLaunch;
 
         }
 
-        public boolean isKeylessEntry() {
+        private boolean isKeylessEntry() {
             if (key == null) {
                 return false;
             } else {
@@ -129,7 +125,7 @@ if (transmission.trim()!="Автоматическая"||transmission.trim()!="�
             }
         }
 
-        public void setKeylessEntry(boolean keylessEntry) {
+        private void setKeylessEntry(boolean keylessEntry) {
             this.keylessEntry = keylessEntry;
         }
 
@@ -156,6 +152,10 @@ if (transmission.trim()!="Автоматическая"||transmission.trim()!="�
     Key ft = new Key (false, true);
     Key ff = new Key (false, false);
 
+    private String rubberToString () {
+        if (this.getIsWinterRubber() == false) {return ", стоит летняя резина, ";}
+        else {return ", стоит зимняя резина, ";}
+    }
 
     @Override
     public String toString() {
@@ -167,7 +167,7 @@ if (transmission.trim()!="Автоматическая"||transmission.trim()!="�
                 ", model='" + getModel() + '\'' +
                 ", mark='" + getMark() + '\'' +
                 ", year=" + getYear() +
-                ", country='" + getCountry() + '\'' +
+                ", country='" + getCountry() + '\'' + rubberToString() +
                 "Key = " + getKey() + '}';
     }
 }
