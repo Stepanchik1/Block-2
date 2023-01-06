@@ -1,19 +1,21 @@
 public abstract class Transport {
  private String mark;
  private String model;
- private final int yearOfIssue = 1900;
+ private final int yearOfIssue;
 private final String country = "Немечщина";
 private String color;
 private int maxVelocity;
 
 public Transport() {
-        this.mark = "марка не указана";
+    this.yearOfIssue = 2000;
+    this.mark = "марка не указана";
         this.model = "модель не указана";
         this.color = "белый";
         this.maxVelocity = 100;
     }
 
-    public Transport(String mark, String model, String color, int maxVelocity) {
+    public Transport(String mark, String model, int year, String color, int maxVelocity) {
+    this.yearOfIssue = year;
         this.mark = mark;
         this.model = model;
         this.color = color;
@@ -49,6 +51,7 @@ public Transport() {
     }
 
     public int getYearOfIssue() {
+    if (yearOfIssue == 0) {return 2000;}
         return yearOfIssue;
     }
 

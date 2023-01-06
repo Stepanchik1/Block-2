@@ -13,8 +13,8 @@ public class Car extends Transport {
         counter++;
     }
 
-    public Car(String mark, String model, String color, int maxVelocity, String complectation, int seatPlaces, boolean trailer) {
-        super(mark, model, color, maxVelocity);
+    public Car(String mark, String model, int year, String color, int maxVelocity, String complectation, int seatPlaces, boolean trailer) {
+        super(mark, model, year, color, maxVelocity);
         this.complectation = complectation;
         this.seatPlaces = seatPlaces;
         this.trailer = trailer;

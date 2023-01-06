@@ -6,14 +6,15 @@ public class Bus extends Transport{
     private final boolean secondFloor = false;
 
     public Bus() {
+        super();
         this.seatPlaces = 50;
         this.allPlaces = 100;
         this.scale = "маленький";
         counter++;
     }
 
-    public Bus(String mark, String model, String color, int maxVelocity, int seatPlaces, int allPlaces, String scale) {
-        super(mark, model, color, maxVelocity);
+    public Bus(String mark, String model, int year, String color, int maxVelocity, int seatPlaces, int allPlaces, String scale) {
+        super(mark, model, year, color, maxVelocity);
         this.seatPlaces = seatPlaces;
         this.allPlaces = allPlaces;
         this.scale = scale;
