@@ -1,37 +1,24 @@
 public class Bus extends Transport{
-    private static int counter = 0;
     private int seatPlaces;
-    private int allPlaces;
     private String scale;
-    private final boolean secondFloor = false;
 
     public Bus() {
         super();
         this.seatPlaces = 50;
-        this.allPlaces = 100;
         this.scale = "маленький";
-        counter++;
     }
 
-    public Bus(String mark, String model, int year, String color, int maxVelocity, int seatPlaces, int allPlaces, String scale) {
-        super(mark, model, year, color, maxVelocity);
+    public Bus(String mark, String model, double engineVolume, int seatPlaces, String scale) {
+        super(mark, model, engineVolume);
         this.seatPlaces = seatPlaces;
-        this.allPlaces = allPlaces;
-        this.scale = scale;
-        counter++;
+        this.scale = scale;;
     }
 
     @Override
     public String toString() {
-        return "Автобус" + getCounter() + ": "+super.toString () +
+        return super.toString () +
                 ", количество сидячих мест - " + getSeatPlaces() +
-                ", всего мест - " + getAllPlaces() +
-                ", размер - " + getScale() +
-                ", одноэтажный";
-    }
-
-    public static int getCounter() {
-        return counter;
+                ", размер - " + getScale();
     }
 
     public int getSeatPlaces() {
@@ -43,14 +30,9 @@ public class Bus extends Transport{
         this.seatPlaces = seatPlaces;
     }
 
-    public int getAllPlaces() {
-        if (allPlaces==0) {return 200;}
-        return allPlaces;
-    }
 
-    public void setAllPlaces(int allPlaces) {
-        this.allPlaces = allPlaces;
-    }
+
+
 
     public String getScale() {
         if (scale==null) {return "короткий";}
@@ -61,7 +43,20 @@ public class Bus extends Transport{
         this.scale = scale;
     }
 
-    public boolean isSecondFloor() {
-        return secondFloor;
+    double toScale (String scale) {
+        if (scale.equals("Микро")) {return 1;}
+        if (scale.equals("Короткий")) {return 1.5;}
+        if (scale.equals("Маленький")) {return 2.0;}
+        return 1;
     }
+
+    public void pitstop() {
+        System.out.println("Автобус остановился");
+    }
+    public int maxVelocity() {
+        double engineVolume = super.getEngineVolume();
+        double scale = toScale(getScale());
+        return (int)engineVolume*Volume_VelocityCouplingCoefficient/(int)(scale);}
+    public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
+
 }

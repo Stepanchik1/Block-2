@@ -1,35 +1,27 @@
-public abstract class Transport {
- private String mark;
- private String model;
- private final int yearOfIssue;
-private final String country = "Немечщина";
-private String color;
-private int maxVelocity;
+public abstract class Transport implements Competitors {
+ protected String mark;
+ protected String model;
+ protected double engineVolume;
 
 public Transport() {
-    this.yearOfIssue = 2000;
     this.mark = "марка не указана";
-        this.model = "модель не указана";
-        this.color = "белый";
-        this.maxVelocity = 100;
+    this.model = "модель не указана";
+    this.engineVolume = 0;
     }
 
-    public Transport(String mark, String model, int year, String color, int maxVelocity) {
-    this.yearOfIssue = year;
-        this.mark = mark;
-        this.model = model;
-        this.color = color;
-        this.maxVelocity = maxVelocity;
+    public Transport(String mark, String model, double engineVolume) {
+    this.mark = mark;
+    this.model = model;
+    this.engineVolume = engineVolume;
     }
 
     @Override
     public String toString() {
+    if (this == null) {return "Транспорт отсутствует";}
         return "марка - " + getMark() +
                 ", модель - " + getModel() +
-                ", год выпуска - " + getYearOfIssue() +
-                ", страна выпуска - " + getCountry()+
-                ", цвет - " + getColor() +
-                ", максимальная скорость - " + getMaxVelocity();
+                ", объем двигателя - " + getEngineVolume() +
+                " л";
     }
 
     public String getMark() {
@@ -50,30 +42,12 @@ public Transport() {
         this.model = model;
     }
 
-    public int getYearOfIssue() {
-    if (yearOfIssue == 0) {return 2000;}
-        return yearOfIssue;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = engineVolume;
     }
 
-    public String getColor() {
-        if (color==null) {return "белый";}
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getMaxVelocity() {
-        if (maxVelocity==0) {return 100;}
-        return maxVelocity;
-    }
-
-    public void setMaxVelocity(int maxVelocity) {
-        this.maxVelocity = maxVelocity;
-    }
 }

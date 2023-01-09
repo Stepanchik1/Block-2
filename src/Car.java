@@ -1,24 +1,14 @@
 public class Car extends Transport {
-    private static int counter = 0;
-   private String complectation;
-   private int seatPlaces;
    private boolean trailer;
-   private final String type = "В";
 
     public Car() {
         super();
-        this.complectation = "базовая";
-        this.seatPlaces = 5;
         this.trailer = false;
-        counter++;
     }
 
-    public Car(String mark, String model, int year, String color, int maxVelocity, String complectation, int seatPlaces, boolean trailer) {
-        super(mark, model, year, color, maxVelocity);
-        this.complectation = complectation;
-        this.seatPlaces = seatPlaces;
+    public Car(String mark, String model, double engineVolume, boolean trailer) {
+        super(mark, model, engineVolume);
         this.trailer = trailer;
-        counter++;
     }
 
     private String trailerToString (boolean trailer) {
@@ -28,29 +18,8 @@ public class Car extends Transport {
 
     @Override
     public String toString() {
-        return "Car" + getCounter() + ": " + super.toString() +
-                ", Комплектация - " + getComplectation() +
-                ", мест для сидения - " + getSeatPlaces() +
-                ", " + trailerToString(getTrailer()) +
-                ", категория " + getType() + ".";
-    }
 
-    public String getComplectation() {
-        if (complectation==null) {return "базовая";}
-        return complectation;
-    }
-
-    public void setComplectation(String complectation) {
-        this.complectation = complectation;
-    }
-
-    public int getSeatPlaces() {
-        if (seatPlaces==0) {return 5;}
-        return seatPlaces;
-    }
-
-    public void setSeatPlaces(int seatPlaces) {
-        this.seatPlaces = seatPlaces;
+        return super.toString() + ", " + trailerToString(getTrailer());
     }
 
     public boolean getTrailer() {
@@ -61,14 +30,9 @@ public class Car extends Transport {
         this.trailer = trailer;
     }
 
-    public static int getCounter() {
-        return counter;
+    public void pitstop() {
+        System.out.println("Машина остановилась");
     }
-
-    public String getType() {
-        return type;
-    }
-
-
-
+    public int maxVelocity() {return (int)getEngineVolume()*Volume_VelocityCouplingCoefficient;}
+    public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
 }
