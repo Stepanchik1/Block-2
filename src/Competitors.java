@@ -5,7 +5,7 @@ public interface Competitors {
 
     double Weight_Deceleration_Factor = 0.0003;
     default void pitstop() {}
-    default int maxVelocity() {return 0;}
+    default double maxVelocity() {return 0;}
     default double theBestTime() {return 0;}
 
 }

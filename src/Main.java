@@ -2,20 +2,20 @@ public class Main {
 
     public static void main(String[] args) {
 
-Car car1 = new Car ("Kia", "K5", 4.0, false);
-Car car2 = new Car ("Nisan", "Tyida", 3.4, false);
-Car car3 = new Car ("Lada", "Granta", 3.2, true);
-Car car4 = new Car ("Shcoda", "Yati", 3.6, false);
+Car car1 = new Car ("Kia", "K5", 4.0, false, "Body_Crossover");
+Car car2 = new Car ("Nisan", "Tyida", 3.4, false, "Body_Sedan");
+Car car3 = new Car ("Lada", "Granta", 3.2, true, "Body_Picap");
+Car car4 = new Car ("Shcoda", "Yati", 3.6, false, "Body_Universal");
 
-Bus bus1 = new Bus("WV", "Transporter", 4.0, 20, "Микро");
-Bus bus2 = new Bus("Москвич", "А9", 1.3, 18, "Микро");
-Bus bus3 = new Bus("Mersedes", "Benz Tourismo", 12.0, 52, "Большой");
-Bus bus4 = new Bus("Mitsubishi", "Fuso Rosa", 5.5, 30, "Маленький");
+Bus bus1 = new Bus("WV", "Transporter", 4.0,  "MICRO");
+Bus bus2 = new Bus("Москвич", "А9", 1.3, "MICRO");
+Bus bus3 = new Bus("Mersedes", "Benz Tourismo", 12.0, "BIG");
+Bus bus4 = new Bus("Mitsubishi", "Fuso Rosa", 5.5, "SMALL");
 
-Truck truck1 = new Truck("Hyundai", "HD35", 2.5, 3500 );
-Truck truck2 = new Truck("Hyundai", "Mighty", 2.9, 8000 );
-Truck truck3 = new Truck("Hyundai", "Universe", 12.7, 16600 );
-Truck truck4 = new Truck("КамАЗ", "4311", 10.85, 15500 );
+Truck truck1 = new Truck("Hyundai", "HD35", 2.5, "light" );
+Truck truck2 = new Truck("Hyundai", "Mighty", 2.9, "middle" );
+Truck truck3 = new Truck("Hyundai", "Universe", 12.7, "hard" );
+Truck truck4 = new Truck("КамАЗ", "4311", 10.85,  "hard");
 
         System.out.println(car1);
         System.out.println(car2);
@@ -71,4 +71,5 @@ Truck truck4 = new Truck("КамАЗ", "4311", 10.85, 15500 );
             Driver Fima = new Driver<>("Ефим Николаевич", 'B', 17, car2);
             System.out.println(Fima);
 
+            car1.printType();
     }}

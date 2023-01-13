@@ -50,4 +50,5 @@ public Transport() {
         this.engineVolume = engineVolume;
     }
 
+    public abstract void printType ();
 }
