@@ -1,4 +1,4 @@
-public class Truck extends Transport {
+public class Truck extends Transport implements Diagnostic{
     String weight;
     double massDown;
     double massUp;
@@ -78,5 +78,9 @@ public class Truck extends Transport {
 
     public void printType () {
         System.out.println("Грузовик");
+    }
+
+    public void diagnostika() {
+        System.out.println("Грузовик "+toString()+" Проходит диагностику");
     }
 }

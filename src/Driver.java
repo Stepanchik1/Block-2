@@ -1,4 +1,4 @@
-public class Driver <S extends Transport > {
+public class Driver <S extends Transport > implements Diagnostic{
     private String FIO;
     private char category;
     private int experience;
@@ -106,4 +106,36 @@ public class Driver <S extends Transport > {
                 " и стажем вождения - " + experience +
                 " лет. Не использует автотранспорт";
     }}
+
+    public void diagnostika() {
+        System.out.println("Начинается диагностика транспортного средства водителя...");
+        try {
+            if ((this.category == 'B' || this.category == 'C')&&this.transport!=null) {System.out.println(toString()+"\nУспешно прошел диагностику!");}
+            else {
+                if (this.category == 0) {
+                    System.out.println("Не указана категория водителя");
+                    throw new IllegalArgumentException("Не указана категория водителя");
+                }
+                if (this.category == 'D') {
+                    System.out.println("Водители автобусов не могут проходить диагностику");
+                    throw new IllegalArgumentException("Водители автобусов не могут проходить диагностику");
+                }
+                if (this.transport == null) {
+                    throw new NullPointerException("Автотранспорт отсутствует");}
+                System.out.println("Неверно указана категория водителя");
+                throw new IllegalArgumentException("Неверно указана категория водителя");}
+            }
+        catch (IllegalArgumentException I) {
+            if (this.transport==null) {System.out.println("Также у водителя отсутствует автотранспорт, чтобы пройти диагностику");}
+            System.out.println(toString()+"\n "+"Диагностику не прошел!!!");
+        }
+        catch (NullPointerException N) {
+            System.out.println(toString());
+            System.out.println("У водителя отсутствует автотранспорт, чтобы пройти диагностику");
+            System.out.println("Диагностика не может быть пройдена!");
+        }
+        finally {
+            System.out.println("Закончилась диагностика транспортного средства.");
+        }
+    }
 }

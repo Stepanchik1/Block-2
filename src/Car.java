@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Car extends Transport {
+public class Car extends Transport implements Diagnostic{
    private boolean trailer;
 
    String bodyType;
@@ -89,5 +89,9 @@ public class Car extends Transport {
 
     public void printType () {
         System.out.println("Машина");
+    }
+
+    public void diagnostika() {
+        System.out.println("Автомобиль "+toString()+" Проходит диагностику");
     }
 }
