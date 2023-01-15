@@ -33,7 +33,6 @@ Driver.list();
         Driver.drivers.get(5).setMechanist(Transport.mechanists.get(2));
         System.out.println(Driver.drivers.get(5));
         sep();
-        // Driver.drivers.get(6).setMechanist(Transport.mechanists.get(0));
         System.out.println(Driver.drivers.get(6));
         sep();
 
