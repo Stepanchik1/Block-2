@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Bus extends Transport{
     private int seatPlacesDown;
 
@@ -72,11 +75,6 @@ public class Bus extends Transport{
     public void pitstop() {
         System.out.println("Автобус остановился");
     }
-    public double maxVelocity() {
-        double engineVolume = super.getEngineVolume();
-        double scale = toScale(getScale());
-        return (int)engineVolume*Volume_VelocityCouplingCoefficient/(int)(scale);}
-    public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
 
     public String getSeatPlaces() {
         return seatPlaces;
@@ -84,5 +82,24 @@ public class Bus extends Transport{
 
     public void printType () {
         System.out.println("Автобус");
+    }
+    static List<Bus> buses = new ArrayList<>();
+    public static void list () {
+        Bus bus1 = new Bus("WV", "Transporter", 4.0,  "MICRO");
+        Bus bus2 = new Bus("Москвич", "А9", 1.3, "MICRO");
+        Bus bus3 = new Bus("Mersedes", "Benz Tourismo", 12.0, "BIG");
+        Bus bus4 = new Bus("Mitsubishi", "Fuso Rosa", 5.5, "SMALL");
+        buses.add(bus1);
+        buses.add(bus2);
+        buses.add(bus3);
+        buses.add(bus4);
+    }
+
+    public static List<Bus> getBuses() {
+        return buses;
+    }
+
+    public static void setBuses(List<Bus> buses) {
+        Bus.buses = buses;
     }
 }

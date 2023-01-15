@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Car extends Transport implements Diagnostic{
@@ -71,8 +73,6 @@ public class Car extends Transport implements Diagnostic{
     public void pitstop() {
         System.out.println("Машина остановилась");
     }
-    public double maxVelocity() {return getEngineVolume()*Volume_VelocityCouplingCoefficient;}
-    public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
 
     public String getBodyType() {
       return bodyType;
@@ -93,5 +93,25 @@ public class Car extends Transport implements Diagnostic{
 
     public void diagnostika() {
         System.out.println("Автомобиль "+toString()+" Проходит диагностику");
+    }
+
+    static List<Car> cars = new ArrayList<>();
+    public static void list () {
+        Car car1 = new Car ("Kia", "K5", 4.0, false, "Body_Crossover");
+        Car car2 = new Car ("Nisan", "Tyida", 3.4, false, "Body_Sedan");
+        Car car3 = new Car ("Lada", "Granta", 3.2, true, "Body_Picap");
+        Car car4 = new Car ("Shcoda", "Yati", 3.6, false, "Body_Universal");
+        cars.add(car1);
+        cars.add(car2);
+        cars.add(car3);
+        cars.add(car4);
+    }
+
+    public static List<Car> getCars() {
+        return cars;
+    }
+
+    public static void setCars(List<Car> cars) {
+        Car.cars = cars;
     }
 }

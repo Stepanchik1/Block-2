@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Truck extends Transport implements Diagnostic{
     String weight;
     double massDown;
@@ -39,8 +42,10 @@ public class Truck extends Transport implements Diagnostic{
 
     @Override
     public String toString() {
-        if (massUp>100000) {return super.toString() + ", "+weight+ ", c массой более " + getMassDown() +" кг";}
-        return super.toString() + ", "+weight+ ", c массой от  " + getMassDown() +" до "+ getMassUp()+" кг";
+        if (massUp > 100000) {
+            return "Грузовой автомобиль: " + super.toString() + ", " + weight + ", c массой более " + getMassDown() + " кг";
+        }
+        return "Грузовой автомобиль: " + super.toString() + ", " + weight + ", c массой от  " + getMassDown() + " до " + getMassUp() + " кг";
     }
 
     public String getWeight() {
@@ -70,11 +75,6 @@ public class Truck extends Transport implements Diagnostic{
     public void pitstop() {
         System.out.println("Грузовик остановился");
     }
-    public double maxVelocity() {
-       double weigh = massUp;
-        if (massUp>100000) {weigh=10000;}
-        return getEngineVolume()*Volume_VelocityCouplingCoefficient/(weigh*Weight_Deceleration_Factor*1000);}
-    public double theBestTime() {return (CIRCLE_LENGTH/maxVelocity());}
 
     public void printType () {
         System.out.println("Грузовик");
@@ -82,5 +82,25 @@ public class Truck extends Transport implements Diagnostic{
 
     public void diagnostika() {
         System.out.println("Грузовик "+toString()+" Проходит диагностику");
+    }
+
+    static List<Truck> trucks = new ArrayList<>();
+    public static void list () {
+        Truck truck1 = new Truck("Hyundai", "HD35", 2.5, "light" );
+        Truck truck2 = new Truck("Hyundai", "Mighty", 2.9, "middle" );
+        Truck truck3 = new Truck("Hyundai", "Universe", 12.7, "hard" );
+        Truck truck4 = new Truck("КамАЗ", "4311", 10.85,  "hard");
+        trucks.add(truck1);
+        trucks.add(truck2);
+        trucks.add(truck3);
+        trucks.add(truck4);
+    }
+
+    public static List<Truck> getTrucks() {
+        return trucks;
+    }
+
+    public static void setTrucks(List<Truck> trucks) {
+        Truck.trucks = trucks;
     }
 }
