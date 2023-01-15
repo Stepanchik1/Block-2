@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class Mechanist <T> {
     String FIO;
     String company;
@@ -59,5 +62,16 @@ public class Mechanist <T> {
             System.out.println("Данный вид транспорта чинить нельзя");
         }
 
+    }
+
+    private static Map<Driver, Mechanist> MapOfMechanists = new HashMap<>();
+
+
+    public static Map<Driver, Mechanist> getMapOfMechanists() {
+        return MapOfMechanists;
+    }
+
+    public static void setMapOfMechanists(Map<Driver, Mechanist> mapOfMechanists) {
+        MapOfMechanists = mapOfMechanists;
     }
 }

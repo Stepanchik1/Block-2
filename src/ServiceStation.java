@@ -7,9 +7,6 @@ public abstract class ServiceStation {
     public static void toLine (Driver driver) {
         getInLine (driver);
         System.out.println(driver.getFIO()+" встал в очередь на ремонт. Его номер - "+driversInList.size());
-
-
-
     }
 
 public static void toLineAll (List <Driver> drivers) {

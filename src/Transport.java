@@ -1,7 +1,9 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public abstract class Transport {
+public abstract class Transport <S extends Transport >{
  protected String mark;
  protected String model;
  protected double engineVolume;
@@ -55,15 +57,4 @@ public Transport() {
 
     public abstract void printType ();
 
-static List<Mechanist> mechanists = new ArrayList<>();
-
-public static void main (String[] args) {
-    Mechanist Vasya = new Mechanist("Василий Иванович", "РемонтТех");
-    Mechanist Sema = new Mechanist("Семен Егорович", "Прайм");
-    Mechanist Yulya = new Mechanist("Юлия Александровна", "РосРемонт");
-    mechanists.add(Vasya);
-    mechanists.add(Sema);
-    mechanists.add(Yulya);
-
-}
 }
