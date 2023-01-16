@@ -1,7 +1,7 @@
 public class Truck extends Transport {
-    String weight;
-    double massDown;
-    double massUp;
+    private String mass;
+   private double massDown;
+   private double massUp;
 
     private enum Mass {
         light("легкий", 0, 3.5),
@@ -19,36 +19,45 @@ public class Truck extends Transport {
 
         @Override
         public String toString() {
-            return mass + "";
+            if (um>100000) {return mass + "(с массой выше "+um+" кг)";}
+            return mass + " (с массой от "+dm+" до "+um+" кг)";
         }
 
     }
 
-    public Truck() {
-        super();
-        this.massDown = 0;
-        this.massUp = 3.5;
-    }
-
     public Truck(String mark, String model, double engineVolume, String mass) {
         super(mark, model, engineVolume);
-        this.massDown = Mass.valueOf(mass.trim()).dm;
-        this.massUp = Mass.valueOf(mass.trim()).um;
-        this.weight = Mass.valueOf(mass.trim()).mass;
+        //this.massDown = Mass.valueOf(mass.trim()).dm;
+        //this.massUp = Mass.valueOf(mass.trim()).um;
+        this.mass = Mass.valueOf(mass.trim()).toString();
+        this.massUp=Mass.valueOf(mass.trim()).um;
+        this.massDown=Mass.valueOf(mass.trim()).dm;
     }
 
     @Override
     public String toString() {
-        if (massUp>100000) {return super.toString() + ", "+weight+ ", c массой более " + getMassDown() +" кг";}
-        return super.toString() + ", "+weight+ ", c массой от  " + getMassDown() +" до "+ getMassUp()+" кг";
+        return "Грузовой автомобиль, "+mass+", "+super.toString();
     }
 
-    public String getWeight() {
-        return weight;
+    public void pitstop() {
+        System.out.println("Грузовик остановился");
+    }
+    public double maxVelocity() {
+       double weigh = massUp;
+        if (massUp>100000) {weigh=10000;}
+        return getEngineVolume()*Volume_VelocityCouplingCoefficient/(weigh*Weight_Deceleration_Factor*1000);}
+    public double theBestTime() {return (CIRCLE_LENGTH/maxVelocity());}
+
+    public void printType () {
+        System.out.println("Грузовик");
     }
 
-    public void setWeight(String weight) {
-        this.weight = weight;
+    public String getMass() {
+        return mass;
+    }
+
+    public void setMass(String mass) {
+        this.mass = mass;
     }
 
     public double getMassDown() {
@@ -65,18 +74,5 @@ public class Truck extends Transport {
 
     public void setMassUp(double massUp) {
         this.massUp = massUp;
-    }
-
-    public void pitstop() {
-        System.out.println("Грузовик остановился");
-    }
-    public double maxVelocity() {
-       double weigh = massUp;
-        if (massUp>100000) {weigh=10000;}
-        return getEngineVolume()*Volume_VelocityCouplingCoefficient/(weigh*Weight_Deceleration_Factor*1000);}
-    public double theBestTime() {return (CIRCLE_LENGTH/maxVelocity());}
-
-    public void printType () {
-        System.out.println("Грузовик");
     }
 }

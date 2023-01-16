@@ -1,4 +1,8 @@
-public abstract class Transport implements Competitors {
+import java.util.HashMap;
+import java.util.Map;
+
+public abstract class Transport <S extends Transport >implements Competitors {
+    
  protected String mark;
  protected String model;
  protected double engineVolume;

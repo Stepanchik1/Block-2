@@ -3,9 +3,9 @@ import java.util.Objects;
 public class Car extends Transport {
    private boolean trailer;
 
-   String bodyType;
+   private String bodyType;
 
-    public enum BodyType{ Body_Sedan("Седан"), Body_Hatchback("Хэтчбэк"), Body_Cupe("Купе"), Body_Universal("Универсал"), Body_OffRoad("Внедорожник"), Body_Crossover("Кроссовер"), Body_Picap("Пикап"), Body_Furgon("Фургон"), Body_Miniven("Минивен");
+    private enum BodyType{ Body_Sedan("Седан"), Body_Hatchback("Хэтчбэк"), Body_Cupe("Купе"), Body_Universal("Универсал"), Body_OffRoad("Внедорожник"), Body_Crossover("Кроссовер"), Body_Picap("Пикап"), Body_Furgon("Фургон"), Body_Miniven("Минивен");
 
         String body;
         BodyType (String body) {
@@ -33,7 +33,7 @@ public class Car extends Transport {
     public Car(String mark, String model, double engineVolume, boolean trailer, String bodyType) {
         super(mark, model, engineVolume);
         this.trailer = trailer;
-       this.bodyType = BodyType.valueOf(bodyType.trim()).body;
+       this.bodyType = BodyType.valueOf(bodyType.trim()).toString();
     }
 
     private String trailerToString (boolean trailer) {
@@ -42,22 +42,9 @@ public class Car extends Transport {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Car car = (Car) o;
-        return trailer == car.trailer && Objects.equals(bodyType, car.bodyType);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(trailer, bodyType);
-    }
-
-    @Override
     public String toString() {
 
-        return super.toString() + ", " + trailerToString(getTrailer())+ ", с типом кузова: "+getBodyType();
+        return "Легковой автомобиль: "+super.toString() + ", " + trailerToString(getTrailer())+ ", с типом кузова: "+getBodyType();
     }
 
     public boolean getTrailer() {
@@ -76,7 +63,6 @@ public class Car extends Transport {
 
     public String getBodyType() {
       return bodyType;
-
     }
 
     public void setBodyType(String bodyType) {
@@ -86,8 +72,7 @@ public class Car extends Transport {
             else {this.bodyType =  null;}
         }
     }
-
     public void printType () {
-        System.out.println("Машина");
+        System.out.println("Легковой автомобиль");
     }
 }

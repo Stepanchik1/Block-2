@@ -17,59 +17,18 @@ Truck truck2 = new Truck("Hyundai", "Mighty", 2.9, "middle" );
 Truck truck3 = new Truck("Hyundai", "Universe", 12.7, "hard" );
 Truck truck4 = new Truck("КамАЗ", "4311", 10.85,  "hard");
 
-        System.out.println(car1);
-        System.out.println(car2);
-        System.out.println(car3);
-        System.out.println(car4);
-        System.out.println(bus1);
-        System.out.println(bus2);
-        System.out.println(bus3);
-        System.out.println(bus4);
-        System.out.println(truck1);
-        System.out.println(truck2);
-        System.out.println(truck3);
-        System.out.println(truck4);
-            car1.pitstop();
-            bus1.pitstop();
-            truck1.pitstop();
-
-        System.out.println(car1.maxVelocity());
-        System.out.println(car2.maxVelocity());
-        System.out.println(car3.maxVelocity());
-        System.out.println(car4.maxVelocity());
-        System.out.println(bus1.maxVelocity());
-        System.out.println(bus2.maxVelocity());
-        System.out.println(bus3.maxVelocity());
-        System.out.println(bus4.maxVelocity());
-        System.out.println(truck1.maxVelocity());
-        System.out.println(truck2.maxVelocity());
-        System.out.println(truck3.maxVelocity());
-        System.out.println(truck4.maxVelocity());
-
-        System.out.println(car1.theBestTime());
-        System.out.println(car2.theBestTime());
-        System.out.println(car3.theBestTime());
-        System.out.println(car4.theBestTime());
-        System.out.println(bus1.theBestTime());
-        System.out.println(bus2.theBestTime());
-        System.out.println(bus3.theBestTime());
-        System.out.println(bus4.theBestTime());
-        System.out.println(truck1.theBestTime());
-        System.out.println(truck2.theBestTime());
-        System.out.println(truck3.theBestTime());
-        System.out.println(truck4.theBestTime());
-
         Driver Leha = new Driver<>("Алексей Иванович", 'B', 2);
         Leha.setTransport(car1);
         System.out.println(Leha);
-        Driver Sasha = new Driver<> ("Александр Степанович", 'C', 5);
+        Driver Sasha = new Driver<> ("Александр Степанович", 'C', 5, truck2);
         System.out.println(Sasha);
-        Sasha.setTransport(bus3);
-        System.out.println(Sasha);
-        Driver Petya = new Driver<>("Петр Семенович", 'D', 10);
-            System.out.println(Petya);
-            Driver Fima = new Driver<>("Ефим Николаевич", 'B', 17, car2);
-            System.out.println(Fima);
-
             car1.printType();
+            truck1.printType();
+            bus1.printType();
+            Truck trucktor = new Truck("Белаз", "Витязь", 30.0, " light ");
+            System.out.println(trucktor);
+        System.out.println(car1);
+        System.out.println(bus1);
+        System.out.println(bus3);
+        System.out.println(bus4);
     }}

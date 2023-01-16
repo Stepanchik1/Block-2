@@ -2,13 +2,11 @@ public class Bus extends Transport{
     private int seatPlacesDown;
 
     private int seatPlacesUp;
-
-    private String seatPlaces;
     private String scale;
 
     private String capacity;
 
-    private enum Scale {MICRO ("Микро", 0,10), SMALL ("Короткий", 0, 25), MIDDLE("Средний", 40,50), BIG("Большой",60,80), VERY_BIG("Огромный", 100, 120);
+    private enum Scale {MICRO ("микро", 0,10), SMALL ("короткий", 0, 25), MIDDLE("средний", 40,50), BIG("большой",60,80), VERY_BIG("огромный", 100, 120);
 
         int numberDown;
         int numberUp;
@@ -25,16 +23,16 @@ public class Bus extends Transport{
         }
 
         public String toString () {
-            return scale;
+            return scale+" (с числом мест "+toStringPlaces()+")";
         }
     }
 
     public Bus() {
         super();
-        this.seatPlaces = Scale.SMALL.toString();
         this.scale = Scale.SMALL.scale;
-        this.seatPlacesDown = Scale.valueOf(this.scale.trim()).numberDown;
-        this.seatPlacesUp = Scale.valueOf(this.scale.trim()).numberUp;
+        this.seatPlacesDown = Scale.SMALL.numberDown;
+        this.seatPlacesUp = Scale.SMALL.numberUp;
+        this.capacity = Scale.SMALL.toString();
     }
 
     public Bus(String mark, String model, double engineVolume, String scale) {
@@ -42,14 +40,15 @@ public class Bus extends Transport{
         this.scale = Scale.valueOf(scale.trim()).scale;
         this.seatPlacesDown = Scale.valueOf(scale.trim()).numberDown;
         this.seatPlacesUp = Scale.valueOf(scale.trim()).numberUp;
-        this.seatPlaces = Scale.valueOf(scale.trim()).toStringPlaces();
+        this.capacity = Scale.valueOf(scale.trim()).toString();
     }
 
     @Override
     public String toString() {
-        return super.toString () +
-                ", количество сидячих мест - " + getSeatPlaces() +
-                ", размер - " + getScale();
+        if ((scale.trim()).equals("микро")) {return
+                "Микроавтобус"+capacity.replace("микро", "") + ", "+ super.toString();}
+        return
+                "Автобус "+capacity + ", "+ super.toString();
     }
 
 
@@ -78,11 +77,32 @@ public class Bus extends Transport{
         return (int)engineVolume*Volume_VelocityCouplingCoefficient/(int)(scale);}
     public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
 
-    public String getSeatPlaces() {
-        return seatPlaces;
-    }
-
     public void printType () {
         System.out.println("Автобус");
     }
+
+    public int getSeatPlacesDown() {
+        return seatPlacesDown;
+    }
+
+    public void setSeatPlacesDown(int seatPlacesDown) {
+        this.seatPlacesDown = seatPlacesDown;
+    }
+
+    public int getSeatPlacesUp() {
+        return seatPlacesUp;
+    }
+
+    public void setSeatPlacesUp(int seatPlacesUp) {
+        this.seatPlacesUp = seatPlacesUp;
+    }
+
+    public String getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
+    }
+
 }
