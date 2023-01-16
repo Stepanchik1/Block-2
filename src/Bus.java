@@ -30,10 +30,6 @@ public class Bus extends Transport{
         this.seatPlaces = seatPlaces;
     }
 
-
-
-
-
     public String getScale() {
         if (scale==null) {return "короткий";}
         return scale;

@@ -1,39 +1,15 @@
-public class Driver <S extends Transport > {
-    private String FIO;
-    private char category;
-    private int experience;
-    private S transport;
+public abstract class Driver <S extends Transport > {
+   protected String FIO;
+   protected int experience;
+   protected S transport;
 
-    public Driver(String FIO, char category, int experience) {
+    public Driver(String FIO, int experience) {
         this.FIO = FIO;
-        if (category == 'B' || category == 'C' || category == 'D') {
-            this.category = category;
-        } else {
-            this.category = 0;
-        }
         if (experience >= 0) {
             this.experience = experience;
         } else {
             this.experience = 0;
         }
-    }
-
-    public Driver (String FIO, char category, int experience, S transport) {
-        this.FIO = FIO;
-        if (category == 'B' || category == 'C' || category == 'D') {
-            this.category = category;
-        } else {
-            this.category = 0;
-        }
-        if (experience >= 0) {
-            this.experience = experience;
-        } else {
-            this.experience = 0;
-        }
-        if ((this.category == 'B' && transport instanceof Car) || (this.category == 'C' && transport instanceof Truck) || (this.category == 'D' && transport instanceof Bus)) {
-            this.transport = transport;
-        } else {
-            System.out.println(nameOfCategory(transport)+" не установлен, так как не соотвествует категории прав водителя ("+category+")"); this.transport=null;}
     }
 
     private void stopTheCar() {
@@ -57,14 +33,6 @@ public class Driver <S extends Transport > {
         this.FIO = FIO;
     }
 
-    public char getCategory() {
-        return category;
-    }
-
-    public void setCategory(char category) {
-        this.category = category;
-    }
-
     public int getExperience() {
         return experience;
     }
@@ -83,27 +51,4 @@ public class Driver <S extends Transport > {
         if (transport instanceof Bus) {return "Автобус";}
         else {return "Транспорт";}
     }
-
-    public void setTransport(S transport) {
-        if ((this.category == 'B' && transport instanceof Car) || (this.category == 'C' && transport instanceof Truck) || (this.category == 'D' && transport instanceof Bus)) {
-            this.transport = transport;
-        } else {
-            System.out.println(nameOfCategory(transport)+" не установлен, так как не соотвествует категории прав водителя ("+category+")");
-        }
-    }
-
-    @Override
-    public String toString() {
-        if (transport instanceof Car||transport instanceof Bus||transport instanceof Truck) {
-            return "Водитель " + FIO +
-                    " с категорией прав - " + category +
-                    " и стажем вождения - " + experience +
-                    " лет. Использует "+ nameOfCategory(transport)+": " + transport;
-        }
-        else {
-        return "Водитель " + FIO +
-                " с категорией прав - " + category +
-                " и стажем вождения - " + experience +
-                " лет. Не использует автотранспорт";
-    }}
 }
