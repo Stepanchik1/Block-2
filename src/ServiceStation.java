@@ -13,7 +13,6 @@ public static void toLineAll (List <Driver> drivers) {
     for (int i = 0; i < drivers.size(); i++) {
         toLine(drivers.get(i));
     }
-
     }
 public static void getInLine (Driver driver) {
     driversInList.add(driver);
