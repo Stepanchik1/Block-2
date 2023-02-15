@@ -26,7 +26,7 @@ public class Main {
             }
         };
 
-        Function <Double, Long> function = new Function() {
+        Function <Double, Long> function = new Function <Double, Long>() {
 
             @Override
             public Long apply(Double o) {
