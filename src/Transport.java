@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class Transport <S extends Transport >implements Competitors {
+public abstract class Transport <S extends Transport > {
     
  protected String mark;
  protected String model;

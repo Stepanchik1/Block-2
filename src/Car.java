@@ -3,9 +3,9 @@ import java.util.Objects;
 public class Car extends Transport {
    private boolean trailer;
 
-   private String bodyType;
+   private BodyType bodyType;
 
-    private enum BodyType{ Body_Sedan("Седан"), Body_Hatchback("Хэтчбэк"), Body_Cupe("Купе"), Body_Universal("Универсал"), Body_OffRoad("Внедорожник"), Body_Crossover("Кроссовер"), Body_Picap("Пикап"), Body_Furgon("Фургон"), Body_Miniven("Минивен");
+    enum BodyType{ Body_Null ("Не указан"), Body_Sedan("Седан"), Body_Hatchback("Хэтчбэк"), Body_Cupe("Купе"), Body_Universal("Универсал"), Body_OffRoad("Внедорожник"), Body_Crossover("Кроссовер"), Body_Picap("Пикап"), Body_Furgon("Фургон"), Body_Miniven("Минивен");
 
         String body;
         BodyType (String body) {
@@ -27,13 +27,13 @@ public class Car extends Transport {
     public Car() {
         super();
         this.trailer = false;
-        this.bodyType = "Седан";
+        this.bodyType = BodyType.Body_Null;
     }
 
-    public Car(String mark, String model, double engineVolume, boolean trailer, String bodyType) {
+    public Car(String mark, String model, double engineVolume, boolean trailer, BodyType bodyType) {
         super(mark, model, engineVolume);
         this.trailer = trailer;
-       this.bodyType = BodyType.valueOf(bodyType.trim()).toString();
+       this.bodyType = bodyType;
     }
 
     private String trailerToString (boolean trailer) {
@@ -55,22 +55,12 @@ public class Car extends Transport {
         this.trailer = trailer;
     }
 
-    public void pitstop() {
-        System.out.println("Машина остановилась");
-    }
-    public double maxVelocity() {return getEngineVolume()*Volume_VelocityCouplingCoefficient;}
-    public double theBestTime() {return 1.0*(CIRCLE_LENGTH/maxVelocity());}
-
     public String getBodyType() {
-      return bodyType;
+      return bodyType.getBodyType();
     }
 
     public void setBodyType(String bodyType) {
-        BodyType body [] = new BodyType[BodyType.values().length];
-        for (int i = 0; i < body.length; i++) {
-            if (bodyType.equals(body[i])) {  this.bodyType = bodyType;}
-            else {this.bodyType =  null;}
-        }
+       this.bodyType = BodyType.valueOf(bodyType);
     }
     public void printType () {
         System.out.println("Легковой автомобиль");

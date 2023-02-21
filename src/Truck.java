@@ -4,6 +4,7 @@ public class Truck extends Transport {
    private double massUp;
 
     private enum Mass {
+        Null ("не указан", 0, 0),
         light("легкий", 0, 3.5),
         middle("средний", 3.5, 12.0),
         hard("тяжелый", 12.0, 999999999);
@@ -27,8 +28,6 @@ public class Truck extends Transport {
 
     public Truck(String mark, String model, double engineVolume, String mass) {
         super(mark, model, engineVolume);
-        //this.massDown = Mass.valueOf(mass.trim()).dm;
-        //this.massUp = Mass.valueOf(mass.trim()).um;
         this.mass = Mass.valueOf(mass.trim()).toString();
         this.massUp=Mass.valueOf(mass.trim()).um;
         this.massDown=Mass.valueOf(mass.trim()).dm;
@@ -38,15 +37,6 @@ public class Truck extends Transport {
     public String toString() {
         return "Грузовой автомобиль, "+mass+", "+super.toString();
     }
-
-    public void pitstop() {
-        System.out.println("Грузовик остановился");
-    }
-    public double maxVelocity() {
-       double weigh = massUp;
-        if (massUp>100000) {weigh=10000;}
-        return getEngineVolume()*Volume_VelocityCouplingCoefficient/(weigh*Weight_Deceleration_Factor*1000);}
-    public double theBestTime() {return (CIRCLE_LENGTH/maxVelocity());}
 
     public void printType () {
         System.out.println("Грузовик");
