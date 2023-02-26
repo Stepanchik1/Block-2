@@ -1,49 +1,32 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
+import java.util.stream.Stream;
 
 public class Main {
 
     public static void main(String[] args) {
-        Predicate<Number> predicate = new Predicate<Number>() {
-            @Override
-            public boolean test(Number num) {
-                if (num.getNumber() > 0) {
-                    return true;
-                }
-                return false;
-            }
+        PlanetSistem.createPS();
+        Stream<PlanetSistem> planetStream = PlanetSistem.planetSistemList.stream();
+        Comparator comparator = new Compare(); // для тренеровки сделал через отдельный класс
+        BiConsumer<PlanetSistem, PlanetSistem> planetsConsumer = (PS1, PS2) -> {
+            System.out.println("минимальное значение - " + PS1.getCountOfPlanets() + " планетной системы " + PS1);
+            System.out.println("максимальное значение - " + PS2.getCountOfPlanets() + " планетной системы " + PS2);
         };
+        Operations minMax = new Operations(); //если делаю метод findMinMax статичным, то подчеркивает <Т>, поэтому пришлось сделать экземпляр класса
+        minMax.findMinMax(planetStream, comparator, planetsConsumer);
 
-        Consumer <Person> consumer = new Consumer<Person>() {
-            @Override
-            public void accept(Person person) {
-                System.out.println("Привет, я "+person.getName());
-            }
-        };
-
-        Function <Double, Long> function = new Function <Double, Long>() {
-
-            @Override
-            public Long apply(Double o) {
-                long l = (long) o.getD();
-                Long aLong = new Long();
-                aLong.setL(l);
-                return aLong;
-            }
-        };
-
-        Supplier <Number> supplier = new Supplier<>() {
-            @Override
-            public Number get() {
-                Number num = new Number();
-                num.setNumber((int) (Math.random()*100));
-                return num;
-            }
-        };
+        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+        ArrayList<Integer> numbers = new ArrayList<>();
+        //numbers = (ArrayList<Integer>) Arrays.stream(array).collect(Collectors.toList()); не хотит работать, поэтому цикл
+        for (int i = 0; i < array.length; i++) {
+            numbers.add(array[i]);
+        }
+        Operations even = new Operations();
+        System.out.println(numbers.toString());
+        numbers = even.findEvenNumbers(numbers);
+        System.out.println(numbers.toString());
     }
 }
