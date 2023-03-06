@@ -1,0 +1,42 @@
+      boolean exit = false;
+        Calendar c = new GregorianCalendar(0,0,0);
+        if (t.getPeriodicity() == Task.Periodicity.ONETIME) {
+        for (;exit==false;) {
+            System.out.println("Просто пропустите этот пункт, если он не нужен\nВведите крайний срок выполнения задачи (число.месяц.год):");
+            Scanner whatDeadline = new Scanner(System.in);
+            String deadline = whatDeadline.nextLine().replace(" ", "");
+            if (deadline.isEmpty()) {return null;}
+            try {
+                String[] strings = deadline.split(".");
+                if (strings.length != 3) {throw new NumberFormatException("Слишком много точек");}
+                if (Integer.parseInt(strings[0]) > 31) {throw new NumberFormatException("Неверно указан номер дня");}
+                if (Integer.parseInt(strings[1])>11) {throw new NumberFormatException("Неверно указан номер месяца");}
+                c.set(Calendar.YEAR, Integer.parseInt(strings[2]));
+                c.set(Calendar.MONTH, Integer.parseInt(strings[1])-1);
+                c.set(Calendar.DATE, Integer.parseInt(strings[0]));
+                exit = true;
+            } catch (NumberFormatException n) {
+                System.out.println("Неверно задан формат даты\n");
+            }
+        }}
+        else {
+            for (;exit==false;) {
+                System.out.println("Введите дату выполнения задачи (число.месяц.год):");
+                Scanner whatDeadline = new Scanner(System.in);
+                String deadline = whatDeadline.nextLine().replace(" ", "");
+                try {
+                    String[] strings = deadline.split(".");
+                    if (strings.length != 3) {throw new NumberFormatException("Слишком много точек");}
+                    if (Integer.parseInt(strings[0]) > 31) {throw new NumberFormatException("Неверно указан номер дня");}
+                    if (Integer.parseInt(strings[1])>12) {throw new NumberFormatException("Неверно указан номер месяца");}
+                    c.set(Calendar.YEAR, Integer.parseInt(strings[2]));
+                    c.set(Calendar.MONTH, Integer.parseInt(strings[1])-1);
+                    c.set(Calendar.DATE, Integer.parseInt(strings[0]));
+                    exit = true;
+                } catch (NumberFormatException n) {
+                    System.out.println("Неверно задан формат даты\n");
+                }
+            }
+        }
+        return c;
+    }

@@ -1,30 +1,31 @@
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.function.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Main {
+    //String string = "Топ-10 самых часто упоминаемых слов, упорядоченных по количеству упоминаний в обратном порядке. В случае одинакового количества упоминаний слова должны быть отсортированы по алфавиту."; ServiceClass.operate(string);
+    // оставил для быстрой проверки
     public static void main(String[] args) {
-        PlanetSistem.createPS();
-        Stream<PlanetSistem> planetStream = PlanetSistem.planetSistemList.stream();
-        Comparator comparator = new Compare(); // для тренеровки сделал через отдельный класс
-        BiConsumer<PlanetSistem, PlanetSistem> planetsConsumer = (PS1, PS2) -> {
-            System.out.println("минимальное значение - " + PS1.getCountOfPlanets() + " планетной системы " + PS1);
-            System.out.println("максимальное значение - " + PS2.getCountOfPlanets() + " планетной системы " + PS2);
-        };
-        Operations minMax = new Operations(); //если делаю метод findMinMax статичным, то подчеркивает <Т>, поэтому пришлось сделать экземпляр класса
-        minMax.findMinMax(planetStream, comparator, planetsConsumer);
-
-        int[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
-
-        List<Integer> numbers = Arrays.stream(array).boxed().collect(Collectors.toList());
-
-        Operations even = new Operations();
-        System.out.println(numbers.toString());
-        numbers =  even.findEvenNumbers((ArrayList <Integer>) numbers);
-        System.out.println(numbers.toString());
+        for (;;) {
+        ServiceClass.operate();}
     }
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

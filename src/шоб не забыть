@@ -1,0 +1,52 @@
+
+
+Date date = new Date();
+        System.out.println(date);
+        Calendar c = new GregorianCalendar(2000, 2, 1);
+        System.out.println(c.getTime());
+        System.out.println(c.get(Calendar.YEAR));
+        SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy" );
+        System.out.println(df.format(c.getTime()));
+
+         WorkTask workTask = new WorkTask ("ghghg", Task.Periodicity.ONETIME);
+                SimpleDateFormat df = new SimpleDateFormat("dd.MM.yyyy" );
+                System.out.println(df.format(workTask.getDateOfCreation().getTime()));
+
+
+         // разница во времени
+         Calendar с1 = new GregorianCalendar(2000, 10, 2);
+                 Calendar с2 = new GregorianCalendar(2001, 11, 3);
+                 Long c3 = с2.getTimeInMillis()-с1.getTimeInMillis();
+                 long diff = TimeUnit.DAYS.convert(c3, TimeUnit.MILLISECONDS);
+                 System.out.println(diff);
+
+
+    \\ Ввод
+        Scanner in = new Scanner(System.in);
+        String string = in.nextLine();
+
+
+
+                System.out.println("Здравствуйте!");
+                boolean exit = false;
+                for (;exit==false;) {
+                    System.out.println("Выберите дейсвтие");
+                    Scanner start = new Scanner(System.in);
+                    String chose = start.nextLine().trim();
+                    if (chose.equals("0")) {
+                        return;
+                    }
+                    if (chose.equals("1")) {
+                        Service.createTask();
+                    }
+                    if (chose.equals("2")) {
+                    }
+                    if (chose.equals("3")) {
+                    }
+                    if (chose.equals("4")) {
+                    }
+                    if (chose.equals("5")) {
+                    }
+                }
+                System.out.println("Хорошего дня!");
+            }
