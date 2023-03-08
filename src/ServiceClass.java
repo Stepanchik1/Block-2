@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.*;
 
 public class ServiceClass {
 
@@ -11,7 +8,7 @@ public class ServiceClass {
             System.out.println("В тексте нет слов");
             return;
         } else {
-            TreeMap<String, Integer> treeMap = wordsMap(cutString(text));
+            LinkedHashMap<String, Integer> treeMap = wordsMap(cutString(text));
             System.out.println(mapToString(treeMap));
             return;
         }
@@ -22,7 +19,7 @@ public class ServiceClass {
             System.out.println("В тексте нет слов");
             return;
         } else {
-            TreeMap<String, Integer> treeMap = wordsMap(cutString(text));
+            LinkedHashMap<String, Integer> treeMap = wordsMap(cutString(text));
             System.out.println(mapToString(treeMap));
             return;
         }
@@ -47,31 +44,33 @@ public class ServiceClass {
         }
     }
 
-    public static TreeMap<String, Integer> wordsMap(String[] words) {
-        TreeMap<String, Integer> treeMap = new TreeMap<>();
-        for (int i = 0; i < words.length; i++) {
-            String word = words[i];
-            if (word != null) {
-                int count = 0;
-                for (int j = 0; j < words.length; j++) {
-                    if (word.equals(words[j])) {
-                        count++;
-                        words[j] = null;
-                    }
-                }
-                treeMap.put(word, count);
-            }
-        }
-        if (treeMap.isEmpty()) {
+    public static LinkedHashMap<String, Integer> wordsMap(String[] words) {
+        LinkedHashMap<String, Integer> hashMap = new LinkedHashMap<>();
+        if (words == null) {
             return null;
         } else {
-            return treeMap;
+            Arrays.stream(words).sorted().toArray();
+            for (int i = 0; i < words.length; i++) {
+                String word = words[i];
+                if (word != null) {
+                    int count = 0;
+                    for (int j = 0; j < words.length; j++) {
+                        if (word.equals(words[j])) {
+                            count++;
+                            words[j] = null;
+                        }
+                    }
+                    hashMap.put(word, count);
+                }
+            }
+            if (hashMap.isEmpty()) {
+                return null;
+            } else {
+                return hashMap;
+            }
         }
     }
-
     public static String mapToString(Map map) {
         return "Всего в тексте " + map.size() + " слов:\n" + map.toString().replace("{", "").replace("}", "").replace(", ", "\n");
     }
 }
-
-
